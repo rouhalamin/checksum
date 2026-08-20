@@ -1,10 +1,15 @@
 <div align="center">
 
-<img src="./assets/checksum-title.gif" alt="CheckSum — animated project title" width="640">
-
-<br>
-
+<table>
+<tr>
+<td width="90" align="center">
 <img src="./assets/app-logo.png" alt="CheckSum logo" width="72" height="72">
+</td>
+<td align="left">
+<img src="./assets/checksum-title.gif" alt="CheckSum — animated project title" height="72">
+</td>
+</tr>
+</table>
 
 ### Native SHA-256 file integrity verification for Windows, built in Rust.
 
@@ -29,16 +34,24 @@
 
 **CheckSum** is a lightweight, native Windows utility that verifies whether a downloaded file matches a trusted cryptographic reference. It computes the file's SHA-256 hash locally and lets you compare it against the value published by the file's original source — no network calls, no telemetry, no third-party services involved.
 
-**Typical use case:** you've downloaded a program from a mirror, torrent, unofficial re-host, or file-sharing link, and want to confirm the file is byte-for-byte identical to what the legitimate publisher released.
+> [!IMPORTANT]
+> Matching SHA-256 digests proves that your file is byte-for-byte identical to the reference it was compared against. It does **not**, by itself, prove that the software is safe or free of malicious code — see [Security Considerations](#security-considerations) for the full distinction.
+
+<br>
+
+## Why It Matters
+
+Files downloaded from a torrent, mirror, unofficial re-host, or file-sharing link aren't always identical to what the original publisher released — sometimes due to corruption in transit, sometimes due to tampering.
+
+CheckSum gives you a simple, offline way to answer one specific question: **"Is the file I have identical to the file the trusted source published?"**
 
 1. Open CheckSum.
 2. Select the downloaded file.
-3. Enter the trusted hash published by the original source.
-4. Let CheckSum compute the file's SHA-256 digest.
+3. Enter the trusted SHA-256 hash published by the original source.
+4. Let CheckSum compute the file's digest.
 5. Compare the result against the trusted reference.
 
-> [!IMPORTANT]
-> Hash verification proves that a file matches a **specific published reference hash**. It does **not** independently prove that the source publishing that hash is trustworthy, or that the file is free of malicious code. See [Security](#security) for the full distinction.
+If the hashes match, your file is identical to that reference. If they don't, it isn't — and shouldn't be treated as the authentic, verified file.
 
 <br>
 
@@ -67,9 +80,9 @@
 
 <br>
 
-## Integrity Verification
+## File Integrity Verification
 
-Every release ships with a published SHA-256 reference hash. **This is a project-provided value, not an independently audited one** — you are encouraged to verify it yourself using tools you trust.
+Every release ships with a published SHA-256 reference hash. **This is a project-provided value, not an independently audited one** — you're encouraged to verify it yourself using tools you already trust.
 
 **CheckSum.exe v1.1.0 — SHA-256:**
 
@@ -88,22 +101,22 @@ certutil -hashfile CheckSum.exe SHA256
 Compare the output line-by-line against the reference hash above.
 
 - ✅ **Matches** — the file you downloaded is identical to the published release.
-- ❌ **Does not match** — the file differs from the published release and should not be treated as identical to it. Do not run it, and re-download from the [official release page](https://github.com/rouhalamin/checksum/releases/tag/v1.1.0).
+- ❌ **Does not match** — the file differs from the published release. Do not run it. Re-download from the [official release page](https://github.com/rouhalamin/checksum/releases/tag/v1.1.0) and verify again.
 
 <br>
 
-## Windows SmartScreen
+## Windows SmartScreen Guidance
 
-CheckSum is developed and distributed independently and does not currently use a paid commercial code-signing certificate. As a result, **Windows SmartScreen may show a warning** when you run it — this is expected behavior for unsigned, independently distributed executables, and is not by itself evidence that a file is unsafe.
+CheckSum is developed and distributed independently and does not currently use a paid commercial code-signing certificate. As a result, **Windows SmartScreen may display a warning** when you run it — this is expected for unsigned, independently distributed executables, and is not by itself evidence that a file is unsafe.
 
-Recommended workflow, in order:
+**Verification-first workflow:**
 
 1. Download `CheckSum.exe` only from the [official GitHub Release](https://github.com/rouhalamin/checksum/releases/download/v1.1.0/CheckSum.exe).
 2. Compute its SHA-256 with `certutil` (see above).
-3. Compare the result against the [published reference hash](#integrity-verification).
-4. Only after independently verifying the file, if Windows still presents an execution warning, you may choose to continue via its **More info → Run anyway** path.
+3. Compare the result against the [published reference hash](#file-integrity-verification).
+4. Only after independently confirming the file matches, if Windows still shows a warning, you may choose to continue via its **More info → Run anyway** path.
 
-Step 4 is documented here as an optional continuation available *after* verification — not as the primary safety recommendation. Verification is the actual safety measure; SmartScreen is simply a signal that prompts you to perform it.
+Step 4 is an optional continuation available *after* verification — never a substitute for it. Verification is the actual safety measure; SmartScreen is simply a prompt to perform it.
 
 <br>
 
@@ -127,11 +140,11 @@ No file contents, hashes, file paths, or metadata ever leave your machine. Check
 
 <br>
 
-## Security
+## Security Considerations
 
 **What SHA-256 verification establishes**
 
-A matching hash means the file you have is byte-for-byte identical to the file the hash was originally generated from. This lets you confirm that a download was not corrupted, tampered with in transit, or substituted with a different file.
+A matching hash means the file you have is byte-for-byte identical to the file the hash was originally generated from. This confirms a download wasn't corrupted in transit or substituted with a different file.
 
 **What it does not establish**
 
@@ -141,7 +154,7 @@ A matching hash means the file you have is byte-for-byte identical to the file t
 
 **Why the source of a hash matters**
 
-Always obtain the reference hash from an authenticated, trusted channel — ideally the same official source you're downloading the file from (e.g. the project's own GitHub Releases page), rather than an unrelated third party.
+Always obtain the reference hash from an authenticated, trusted channel — ideally the same official source you're downloading the file from — rather than an unrelated third party.
 
 **A mismatched hash**
 
@@ -201,16 +214,16 @@ If you're planning a larger change, opening an issue first to discuss the approa
 
 Hi, I'm Rouhalamin.
 
-I spent months building CheckSum from scratch in Rust, putting a lot of late nights into its performance, reliability, and security. In a space full of similar tools, my goal was to make something fast, focused, and trustworthy — and to keep it fully open source rather than gating it behind a paywall, because I believe basic security tooling should be accessible to everyone.
+I spent months building CheckSum from scratch in Rust, putting countless late nights into its performance, reliability, and security. In a space full of similar tools, my goal was to make something fast, focused, and trustworthy — and to keep it fully open source rather than gating it behind a paywall, because I believe useful security tools should be accessible to everyone.
 
-As an independent developer without corporate backing, funding, or a team, sustaining that is a real challenge. If CheckSum has helped you verify a download, saved you time, or given you peace of mind, a contribution goes directly toward future development, testing, infrastructure, documentation, and security improvements.
+As an independent developer without financial backing, keeping a security-focused open-source project alive is a real challenge. If CheckSum has helped you verify a download, protect your files, or save you time, your support goes directly toward future development, testing, infrastructure, documentation, and security improvements.
 
-Thank you for supporting independent open-source software.
+Thank you for supporting independent open-source development.
 
 ### Cryptocurrency Donations
 
 > [!WARNING]
-> Always double-check the **network** before sending funds. Ethereum and USDT/Tether use **different blockchains** — sending USDT to the Ethereum address (or vice versa, on the wrong network) may result in permanent loss of funds.
+> Always double-check the **network** before sending funds. Ethereum and USDT/Tether use **different blockchains** — sending funds on the wrong network may result in permanent loss.
 
 <table>
 <tr>
