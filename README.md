@@ -2,11 +2,11 @@
 
 <table>
 <tr>
-<td width="90" align="center">
-<img src="./assets/app-logo.png" alt="CheckSum logo" width="72" height="72">
+<td width="120" align="center">
+<img src="./assets/app-logo.png" alt="CheckSum logo" width="100" height="100">
 </td>
 <td align="left">
-<img src="./assets/checksum-title.gif" alt="CheckSum — animated project title" height="72">
+<img src="./assets/checksum-title.gif" alt="CheckSum — animated project title" width="520">
 </td>
 </tr>
 </table>
