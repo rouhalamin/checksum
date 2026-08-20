@@ -1,15 +1,6 @@
 <div align="center">
 
-<table>
-<tr>
-<td width="120" align="center">
-<img src="./assets/app-logo.png" alt="CheckSum logo" width="100" height="100">
-</td>
-<td align="left">
-<img src="./assets/checksum-title.gif" alt="CheckSum — animated project title" width="520">
-</td>
-</tr>
-</table>
+<img src="./assets/app-logo.png" alt="CheckSum logo" width="100">&nbsp;&nbsp;<img src="./assets/checksum-title.gif" alt="CheckSum — animated project title" width="620">
 
 ### Native SHA-256 file integrity verification for Windows, built in Rust.
 
