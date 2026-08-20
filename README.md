@@ -1,537 +1,284 @@
-# <div align="center">
-
-<a href="https://github.com/rouhalamin/checksum">
-
-<img src="./assets/checksum-title.gif" alt="CheckSum — Secure File Integrity Verification" width="820">
-
-</a>
-
-<br>
-
-### 🔐 Verify. Trust. Secure.
-
-**A fast, lightweight and security-focused file integrity verification tool built with Rust.**
-
-<br>
-
-[![Rust](https://img.shields.io/badge/Built%20with-Rust-orange?style=for-the-badge\&logo=rust)](https://www.rust-lang.org/)
-[![Platform](https://img.shields.io/badge/Platform-Windows%2010%20%2F%2011-blue?style=for-the-badge\&logo=windows)](https://www.microsoft.com/windows/)
-[![License](https://img.shields.io/badge/License-GPL--3.0-red?style=for-the-badge)](./LICENSE)
-[![Release](https://img.shields.io/github/v/release/rouhalamin/checksum?style=for-the-badge\&color=success)](https://github.com/rouhalamin/checksum/releases)
-[![Repository](https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge\&logo=github)](https://github.com/rouhalamin/checksum)
-
-</div>
-
----
-
-## 🛡️ What is CheckSum?
-
-**CheckSum** is a security-focused file integrity verification tool designed to help users determine whether a downloaded file matches a trusted cryptographic hash.
-
-Downloading software from torrents, mirrors, file-sharing platforms, unofficial websites, or other untrusted sources can expose users to tampered or modified files.
-
-CheckSum provides a simple verification workflow:
-
-> **Choose the file → Enter the trusted SHA-256 hash → Verify → Trust or Reject**
-
-If the calculated SHA-256 hash matches the trusted reference hash, the file contents match that reference.
-
-If the hashes do **not** match, the file is different from the trusted reference and should **not** be considered authentic.
-
-### Why it matters
-
-A downloaded file can look completely normal while its contents have been modified.
-
-Checksum verification gives you a cryptographic way to compare the file you received against a known-good hash published by the developer or another trusted source.
-
----
-
-## ⚡ Why CheckSum?
-
-* 🦀 **Built with Rust** — designed around performance, reliability and Rust's memory-safety guarantees.
-* 🔐 **SHA-256 verification** — uses a widely adopted cryptographic hash function for file integrity verification.
-* 🚀 **Fast and lightweight** — focused on doing one security task efficiently.
-* 🖥️ **Windows focused** — supports Windows 10 and Windows 11.
-* 🎯 **Simple workflow** — select a file, provide its trusted hash, and verify.
-* 🔎 **Security-first purpose** — built specifically to help users detect modified or corrupted downloads.
-* 🆓 **Open Source** — released under the GPL-3.0 license.
-
----
-
-# 🚀 Download
-
 <div align="center">
 
-<a href="https://github.com/rouhalamin/checksum/releases/download/v1.1.0/CheckSum.exe">
-<img src="https://img.shields.io/badge/⬇%20Download%20CheckSum%20v1.1.0-00C853?style=for-the-badge&logo=windows&logoColor=white" alt="Download CheckSum v1.1.0">
-</a>
+<img src="./assets/checksum-title.gif" alt="CheckSum — animated project title" width="640">
 
-  
+<br>
 
-<a href="https://checksumapp.netlify.app/">
-<img src="https://img.shields.io/badge/🌐%20Official%20Website-111827?style=for-the-badge&logo=netlify&logoColor=white" alt="Official Website">
-</a>
+<img src="./assets/app-logo.png" alt="CheckSum logo" width="72" height="72">
+
+### Native SHA-256 file integrity verification for Windows, built in Rust.
+
+<a href="https://github.com/rouhalamin/checksum/releases/tag/v1.1.0"><img src="https://img.shields.io/github/v/release/rouhalamin/checksum?style=flat-square&label=release&color=2b6cb0" alt="Latest release"></a>
+<a href="https://github.com/rouhalamin/checksum/blob/main/LICENSE"><img src="https://img.shields.io/github/license/rouhalamin/checksum?style=flat-square&color=6c5ce7" alt="License"></a>
+<img src="https://img.shields.io/badge/language-Rust-b7410e?style=flat-square&logo=rust&logoColor=white" alt="Written in Rust">
+<img src="https://img.shields.io/badge/platform-Windows%2010%20%7C%2011-0078d4?style=flat-square&logo=windows&logoColor=white" alt="Supported platforms">
+<a href="https://github.com/rouhalamin/checksum/issues"><img src="https://img.shields.io/github/issues/rouhalamin/checksum?style=flat-square&color=e67e22" alt="Open issues"></a>
+
+<p></p>
+
+**[Download for Windows](https://github.com/rouhalamin/checksum/releases/download/v1.1.0/CheckSum.exe)** &nbsp;·&nbsp;
+[Release Notes](https://github.com/rouhalamin/checksum/releases/tag/v1.1.0) &nbsp;·&nbsp;
+[Website](https://checksumapp.netlify.app/) &nbsp;·&nbsp;
+[Report an Issue](https://github.com/rouhalamin/checksum/issues)
 
 </div>
 
-### Current Release
+<br>
 
-**Version:** `v1.1.0`
-**Executable:** `CheckSum.exe`
-**Platform:** Windows 10 / 11
+## Overview
 
-🔗 **GitHub Release:**
-https://github.com/rouhalamin/checksum/releases/tag/v1.1.0
+**CheckSum** is a lightweight, native Windows utility that verifies whether a downloaded file matches a trusted cryptographic reference. It computes the file's SHA-256 hash locally and lets you compare it against the value published by the file's original source — no network calls, no telemetry, no third-party services involved.
 
-🔗 **Direct Download:**
-https://github.com/rouhalamin/checksum/releases/download/v1.1.0/CheckSum.exe
+**Typical use case:** you've downloaded a program from a mirror, torrent, unofficial re-host, or file-sharing link, and want to confirm the file is byte-for-byte identical to what the legitimate publisher released.
 
-🔗 **Official Website:**
-https://checksumapp.netlify.app/
+1. Open CheckSum.
+2. Select the downloaded file.
+3. Enter the trusted hash published by the original source.
+4. Let CheckSum compute the file's SHA-256 digest.
+5. Compare the result against the trusted reference.
 
----
+> [!IMPORTANT]
+> Hash verification proves that a file matches a **specific published reference hash**. It does **not** independently prove that the source publishing that hash is trustworthy, or that the file is free of malicious code. See [Security](#security) for the full distinction.
 
-# 🔐 Verify the Download Before Running
+<br>
 
-For security software, **verification should come before execution**.
+## Key Features
 
-The SHA-256 hash published for the `CheckSum.exe` release is:
+| | |
+|---|---|
+| 🦀 **Native & lightweight** | Written in Rust with a native Win32 GUI — no runtime, no bundled browser engine. |
+| 🔒 **Fully offline** | Hashing happens entirely on your machine. Nothing is ever uploaded or transmitted. |
+| ⚡ **Fast on large files** | Chunked 4 MiB reads on a background thread keep the UI responsive on multi-gigabyte files. |
+| 🔓 **Open source** | GPL-3.0 licensed. The complete source is available for anyone to read, audit, or rebuild. |
+| 🎯 **Single purpose** | Does one job — SHA-256 comparison — and does not attempt to be an antivirus or malware scanner. |
 
-```text
+<br>
+
+## Download
+
+| | |
+|---|---|
+| **Latest version** | `v1.1.0` |
+| **Executable** | `CheckSum.exe` |
+| **Direct download** | **[CheckSum.exe (v1.1.0)](https://github.com/rouhalamin/checksum/releases/download/v1.1.0/CheckSum.exe)** |
+| **All releases** | [github.com/rouhalamin/checksum/releases](https://github.com/rouhalamin/checksum/releases/tag/v1.1.0) |
+| **Source code** | [github.com/rouhalamin/checksum](https://github.com/rouhalamin/checksum) |
+| **Website** | [checksumapp.netlify.app](https://checksumapp.netlify.app/) |
+
+<br>
+
+## Integrity Verification
+
+Every release ships with a published SHA-256 reference hash. **This is a project-provided value, not an independently audited one** — you are encouraged to verify it yourself using tools you trust.
+
+**CheckSum.exe v1.1.0 — SHA-256:**
+
+```
 bb42d17310d5e1662b2235821a5f248a77c2bcc48566dbef441e8b5feb3d24bf
 ```
 
-### Windows built-in verification
+### Verifying on Windows
 
-Windows includes the `certutil` command, so no additional hashing software is required.
+Windows includes a native command-line tool that can compute a file's SHA-256 hash without installing anything:
 
-Open **Command Prompt** in the folder containing `CheckSum.exe` and run:
-
-```cmd
+```powershell
 certutil -hashfile CheckSum.exe SHA256
 ```
 
-The resulting hash should be:
+Compare the output line-by-line against the reference hash above.
 
-```text
-bb42d17310d5e1662b2235821a5f248a77c2bcc48566dbef441e8b5feb3d24bf
-```
-
-### ✅ Matching hash
-
-If the calculated SHA-256 value exactly matches the published reference:
-
-```text
-bb42d17310d5e1662b2235821a5f248a77c2bcc48566dbef441e8b5feb3d24bf
-```
-
-the downloaded executable matches the published reference hash.
-
-### ❌ Different hash
-
-If even **one character** differs, the file does not match the published reference.
-
-Do **not** assume that the file is authentic. Download the executable again from the official release page and verify it again.
-
----
-
-# 🪟 Windows SmartScreen
-
-Because CheckSum is distributed as an independently developed Windows executable and may not have a commercial code-signing certificate, Microsoft Defender SmartScreen may display a warning such as:
-
-> **Windows protected your PC**
-
-This warning does **not by itself prove that the program is malicious**. However, it also should not simply be ignored.
-
-### Recommended verification process
-
-Before choosing to continue:
-
-1. Download `CheckSum.exe` from the official GitHub Release.
-2. Calculate its SHA-256 hash with:
-
-```cmd
-certutil -hashfile CheckSum.exe SHA256
-```
-
-3. Compare the result against the published hash in this README.
-4. Only continue when the hash matches the trusted reference.
-5. If SmartScreen still prevents execution and you have independently verified the hash and source, Windows may provide **More info → Run anyway**.
-
-> ⚠️ **Security note:** Never bypass SmartScreen merely because a file refuses to run. Verify the source and SHA-256 hash first.
-
----
-
-# 🧭 How It Works
-
-CheckSum follows a straightforward integrity-verification model:
-
-```text
-                 ┌─────────────────────┐
-                 │   Download a file   │
-                 └──────────┬──────────┘
-                            │
-                            ▼
-                 ┌─────────────────────┐
-                 │     Open CheckSum   │
-                 └──────────┬──────────┘
-                            │
-                            ▼
-                 ┌─────────────────────┐
-                 │    Select the file  │
-                 └──────────┬──────────┘
-                            │
-                            ▼
-                 ┌─────────────────────┐
-                 │ Enter trusted hash  │
-                 └──────────┬──────────┘
-                            │
-                            ▼
-                  ┌───────────────────┐
-                  │ Calculate SHA-256 │
-                  └─────────┬─────────┘
-                            │
-                   ┌────────┴────────┐
-                   ▼                 ▼
-              ✅ MATCH             ❌ MISMATCH
-                   │                 │
-                   ▼                 ▼
-               Trusted          Do not trust
-               reference        the file
-               match
-```
-
----
-
-# 🧪 Example
-
-Suppose a developer publishes the following SHA-256 value for a program:
-
-```text
-bb42d17310d5e1662b2235821a5f248a77c2bcc48566dbef441e8b5feb3d24bf
-```
-
-You download the program and calculate its SHA-256 locally:
-
-```cmd
-certutil -hashfile CheckSum.exe SHA256
-```
-
-If Windows returns:
-
-```text
-bb42d17310d5e1662b2235821a5f248a77c2bcc48566dbef441e8b5feb3d24bf
-```
-
-the downloaded file matches the published reference.
-
-If Windows returns anything else, the file is not identical to the published reference.
-
----
-
-# 🔏 Important Security Concept
-
-A SHA-256 comparison answers one specific question:
-
-> **Does this file produce the same SHA-256 digest as the trusted reference?**
-
-It does **not** automatically prove that the publisher is trustworthy.
-
-For meaningful verification, always obtain the reference hash from a source you trust, such as:
-
-* the official project repository;
-* the official release page;
-* a trusted developer publication channel;
-* or another authenticated distribution channel.
-
-**Never trust a hash that was supplied by the same untrusted source as the file you are attempting to verify.**
-
----
-
-# 💻 Supported Platform
-
-| Platform   | Status                    |
-| ---------- | ------------------------- |
-| Windows 10 | ✅ Supported               |
-| Windows 11 | ✅ Supported               |
-| Linux      | 🚧 Not currently targeted |
-| macOS      | 🚧 Not currently targeted |
-
----
-
-# 🦀 Technology
-
-CheckSum is written in **Rust**.
-
-The project uses Rust because the language provides strong compile-time safety guarantees while allowing developers to build high-performance native applications.
-
-### Core technology
-
-```text
-Language       → Rust
-Integrity      → SHA-256
-Platform       → Windows 10 / 11
-Distribution   → GitHub Releases
-License        → GPL-3.0
-```
-
----
-
-# 📦 Source Code
-
-The complete source code is publicly available:
-
-**GitHub Repository**
-https://github.com/rouhalamin/checksum
-
-The project is intended to remain transparent and auditable so users and security professionals can inspect the implementation themselves.
-
----
-
-# ❤️ Support Independent Open-Source Development
-
-<div align="center">
-
-## Help Keep CheckSum Alive
-
-</div>
-
-Hi, I'm **Rouhalamin**.
-
-I spent months building this CheckSum tool from scratch using Rust, pouring my heart and countless sleepless nights into optimizing its performance, reliability, and security.
-
-In a world filled with similar applications, I wanted to create something exceptionally fast, focused, and trustworthy.
-
-But I'm an independent developer without financial backing. Competing with companies that have large budgets, teams, infrastructure, and commercial security resources is a massive challenge.
-
-I refused to put this tool behind a paywall because I believe that **everyone deserves access to basic security tools.**
-
-If CheckSum protects your files, helps you verify a download, saves you time, or simply gives you peace of mind, your support can help keep this project alive.
-
-Every contribution — large or small — can help fund future development, testing, infrastructure, documentation, security improvements, and new features.
-
-### Thank you for supporting independent open-source development. ❤️
-
----
-
-## 💰 Cryptocurrency Donations
-
-<div align="center">
-
-|                          🟠 Bitcoin (BTC)                         |                          ♦️ Ethereum (ETH)                         |                            🟢 Tether (USDT)                           |
-| :---------------------------------------------------------------: | :----------------------------------------------------------------: | :-------------------------------------------------------------------: |
-| <img src="./assets/btc-qr.png" alt="Bitcoin QR Code" width="180"> | <img src="./assets/eth-qr.png" alt="Ethereum QR Code" width="180"> | <img src="./assets/usdt-qr.png" alt="USDT TRC20 QR Code" width="180"> |
-|                        **Network:** Bitcoin                       |                **Network:** Base / Optimism / ERC-20               |                       **Network:** TRC-20 (TRON)                      |
-|            `bc1qgsxsy5wp6twxhuxhvnujd8pza788ra5j4j67gu`           |            `0x6E6764da4c477a08318224B992Bb54Cedd4197a0`            |                  `TDcg8aKadKRZx97Fw5p7BfCGXBBgWFy6Vh`                 |
-
-</div>
-
-### ⚠️ Donation Safety
-
-Always verify the wallet address before sending funds.
-
-For Ethereum:
-
-```text
-Base       → 0x6E6764da4c477a08318224B992Bb54Cedd4197a0
-Optimism   → 0x6E6764da4c477a08318224B992Bb54Cedd4197a0
-ERC-20     → 0x6E6764da4c477a08318224B992Bb54Cedd4197a0
-```
-
-For USDT:
-
-```text
-TRC-20 / TRON → TDcg8aKadKRZx97Fw5p7BfCGXBBgWFy6Vh
-```
-
-> ⚠️ **Always select the correct blockchain network when sending cryptocurrency.**
-
----
-
-# 🛡️ Responsible Disclosure
-
-Security is a core part of CheckSum.
-
-If you discover a security vulnerability, implementation flaw, or other issue that could affect the security or integrity of the project, please report it responsibly.
-
-### Please do not publicly disclose an exploitable vulnerability before giving the maintainer reasonable time to investigate and address it.
-
-Send security reports directly to:
-
-**📧 [rouhalaminerfani@gmail.com](mailto:rouhalaminerfani@gmail.com)**
-
-When reporting a vulnerability, please include:
-
-* a clear description of the issue;
-* affected version(s);
-* reproduction steps;
-* proof-of-concept details where appropriate;
-* potential security impact;
-* and any suggested mitigation.
-
-Security researchers who responsibly report valid issues are greatly appreciated. 🔐
-
----
-
-# 🐛 Bug Reports & Feature Requests
-
-Found a bug that is not security-sensitive?
-
-Please open a GitHub Issue:
-
-https://github.com/rouhalamin/checksum/issues
-
-When creating an issue, include as much useful information as possible:
-
-```text
-CheckSum Version:
-Windows Version:
-Expected Behavior:
-Actual Behavior:
-Steps to Reproduce:
-Additional Information:
-```
-
-For sensitive security vulnerabilities, use the private security email instead of creating a public issue.
-
----
-
-# 🤝 Contributing
-
-Contributions are welcome.
-
-You can contribute by:
-
-* reporting bugs;
-* improving documentation;
-* reviewing source code;
-* suggesting features;
-* submitting pull requests;
-* testing new releases;
-* or helping improve the security of the project.
-
-Repository:
-
-https://github.com/rouhalamin/checksum
-
-Before submitting a pull request, please make sure your changes are clear, tested where applicable, and consistent with the project's existing architecture.
-
----
-
-# 📜 License
-
-CheckSum is licensed under the:
-
-## GNU General Public License v3.0 — GPL-3.0
-
-The GPL-3.0 license provides users with the freedom to use, study, modify, and redistribute the software under its terms.
-
-See the full license:
-
-[LICENSE](./LICENSE)
-
----
-
-# 👤 Developer
-
-<div align="center">
-
-### Built and maintained by **Rohulamin Erfani**
-
-Security-focused software developer and independent open-source creator.
+- ✅ **Matches** — the file you downloaded is identical to the published release.
+- ❌ **Does not match** — the file differs from the published release and should not be treated as identical to it. Do not run it, and re-download from the [official release page](https://github.com/rouhalamin/checksum/releases/tag/v1.1.0).
 
 <br>
 
-[![GitHub](https://img.shields.io/badge/GitHub-rouhalamin-181717?style=for-the-badge\&logo=github)](https://github.com/rouhalamin)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Rohulamin%20Erfani-0A66C2?style=for-the-badge\&logo=linkedin)](https://www.linkedin.com/in/rouhalamin/)
-[![Email](https://img.shields.io/badge/Email-Contact-D14836?style=for-the-badge\&logo=gmail\&logoColor=white)](mailto:rouhalaminerfani@gmail.com)
+## Windows SmartScreen
 
-</div>
+CheckSum is developed and distributed independently and does not currently use a paid commercial code-signing certificate. As a result, **Windows SmartScreen may show a warning** when you run it — this is expected behavior for unsigned, independently distributed executables, and is not by itself evidence that a file is unsafe.
 
----
+Recommended workflow, in order:
 
-# 🌐 Connect With Me
+1. Download `CheckSum.exe` only from the [official GitHub Release](https://github.com/rouhalamin/checksum/releases/download/v1.1.0/CheckSum.exe).
+2. Compute its SHA-256 with `certutil` (see above).
+3. Compare the result against the [published reference hash](#integrity-verification).
+4. Only after independently verifying the file, if Windows still presents an execution warning, you may choose to continue via its **More info → Run anyway** path.
+
+Step 4 is documented here as an optional continuation available *after* verification — not as the primary safety recommendation. Verification is the actual safety measure; SmartScreen is simply a signal that prompts you to perform it.
+
+<br>
+
+## How It Works
+
+CheckSum reads the target file in 4 MiB chunks on a background thread, feeding each chunk into a SHA-256 hasher (via the [`sha2`](https://crates.io/crates/sha2) crate). Progress, elapsed time, and bytes processed are reported live to the UI thread. Once hashing completes, the computed digest is compared — case-insensitively — against the hash you provided.
+
+No file contents, hashes, file paths, or metadata ever leave your machine. CheckSum makes no network requests.
+
+<br>
+
+## Supported Platforms & Technology
+
+| | |
+|---|---|
+| **Operating systems** | Windows 10, Windows 11 |
+| **Language** | Rust |
+| **Cryptographic primitive** | SHA-256 |
+| **Interface** | Native Win32 GUI |
+| **License** | [GPL-3.0](./LICENSE) |
+
+<br>
+
+## Security
+
+**What SHA-256 verification establishes**
+
+A matching hash means the file you have is byte-for-byte identical to the file the hash was originally generated from. This lets you confirm that a download was not corrupted, tampered with in transit, or substituted with a different file.
+
+**What it does not establish**
+
+- It does not prove the original file is free of malicious code — it proves your copy matches a *reference*, not that the reference itself is benign.
+- It does not verify the identity or trustworthiness of whoever published the reference hash.
+- A matching hash is not a substitute for antivirus scanning, code review, or downloading from a source you already trust.
+
+**Why the source of a hash matters**
+
+Always obtain the reference hash from an authenticated, trusted channel — ideally the same official source you're downloading the file from (e.g. the project's own GitHub Releases page), rather than an unrelated third party.
+
+**A mismatched hash**
+
+Should always be treated as a warning sign. It means the file in your possession is not identical to what the trusted source published — do not run it, and re-obtain the file from the original source.
+
+<br>
+
+## Responsible Disclosure
+
+If you discover a security vulnerability in CheckSum, please report it privately rather than opening a public issue.
+
+**Report security issues to:** [rouhalaminerfani@gmail.com](mailto:rouhalaminerfani@gmail.com)
+
+Please avoid publicly disclosing an exploitable vulnerability before the maintainer has had a reasonable opportunity to investigate and address it.
+
+When possible, please include:
+
+- Affected version
+- Description of the vulnerability
+- Steps to reproduce
+- Proof of concept, if applicable
+- Potential security impact
+- Suggested mitigation, if you have one
+
+<br>
+
+## Bug Reports
+
+Non-security bugs and general issues can be reported on the [issue tracker](https://github.com/rouhalamin/checksum/issues).
+
+When filing a report, it helps to include:
+
+- CheckSum version
+- Windows version
+- Steps to reproduce the issue
+- Expected vs. actual behavior
+- Screenshots or error text, if relevant
+
+<br>
+
+## Contributing
+
+Contributions of all sizes are welcome, including:
+
+- Bug reports and reproductions
+- Documentation improvements
+- Security review and hardening suggestions
+- Feature suggestions
+- Testing on different Windows configurations
+- Pull requests and code review
+
+If you're planning a larger change, opening an issue first to discuss the approach is appreciated.
+
+<br>
+
+## Support the Project
+
+Hi, I'm Rouhalamin.
+
+I spent months building CheckSum from scratch in Rust, putting a lot of late nights into its performance, reliability, and security. In a space full of similar tools, my goal was to make something fast, focused, and trustworthy — and to keep it fully open source rather than gating it behind a paywall, because I believe basic security tooling should be accessible to everyone.
+
+As an independent developer without corporate backing, funding, or a team, sustaining that is a real challenge. If CheckSum has helped you verify a download, saved you time, or given you peace of mind, a contribution goes directly toward future development, testing, infrastructure, documentation, and security improvements.
+
+Thank you for supporting independent open-source software.
+
+### Cryptocurrency Donations
+
+> [!WARNING]
+> Always double-check the **network** before sending funds. Ethereum and USDT/Tether use **different blockchains** — sending USDT to the Ethereum address (or vice versa, on the wrong network) may result in permanent loss of funds.
+
+<table>
+<tr>
+<th align="center">Bitcoin (BTC)</th>
+<th align="center">Ethereum (ETH)</th>
+<th align="center">Tether (USDT)</th>
+</tr>
+<tr>
+<td align="center"><img src="./assets/btc-qr.png" alt="Bitcoin donation address QR code" width="160"></td>
+<td align="center"><img src="./assets/eth-qr.png" alt="Ethereum donation address QR code" width="160"></td>
+<td align="center"><img src="./assets/usdt-qr.png" alt="Tether donation address QR code" width="160"></td>
+</tr>
+<tr>
+<td align="center">Network: <strong>Bitcoin</strong></td>
+<td align="center">Networks: <strong>Base · Optimism · ERC-20</strong></td>
+<td align="center">Network: <strong>TRC-20 (TRON)</strong></td>
+</tr>
+<tr>
+<td align="center">
+
+```
+bc1qgsxsy5wp6twxhuxhvnujd8pza788ra5j4j67gu
+```
+
+</td>
+<td align="center">
+
+```
+0x6E6764da4c477a08318224B992Bb54Cedd4197a0
+```
+
+</td>
+<td align="center">
+
+```
+TDcg8aKadKRZx97Fw5p7BfCGXBBgWFy6Vh
+```
+
+</td>
+</tr>
+</table>
+
+<br>
+
+## License
+
+CheckSum is released under the **[GNU General Public License v3.0](./LICENSE)**.
+
+You are free to use, study, modify, and redistribute this software under the terms of the GPL-3.0, including creating and distributing your own forks. Any redistributed modified version must also remain licensed under GPL-3.0 and retain the corresponding copyright and license notices, as required by the license. See the [`LICENSE`](./LICENSE) file for the full legal text.
+
+<br>
+
+## Developer & Contact
 
 <div align="center">
 
-<a href="https://wa.me/93702302034">
-<img src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" alt="WhatsApp">
-</a>
+**Rohulamin Erfani**
+*Independent developer*
 
-<a href="https://t.me/rouhalamin_erfani">
-<img src="https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram">
-</a>
+<a href="https://wa.me/93702302034"><img src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" alt="WhatsApp"></a>
+<a href="https://t.me/rouhalamin_erfani"><img src="https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram"></a>
+<a href="https://www.linkedin.com/in/rouhalamin/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
+<a href="https://github.com/rouhalamin"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"></a>
+<a href="mailto:rouhalaminerfani@gmail.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"></a>
+<a href="https://www.instagram.com/rouhalaminerfani/"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram"></a>
 
-<a href="https://www.linkedin.com/in/rouhalamin/">
-<img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
-</a>
+<br><br>
 
-<a href="https://github.com/rouhalamin">
-<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
-</a>
-
-<a href="mailto:rouhalaminerfani@gmail.com">
-<img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email">
-</a>
-
-<a href="https://www.instagram.com/rouhalaminerfani/">
-<img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram">
-</a>
-
-</div>
-
----
-
-# 🌐 Official Links
-
-| Resource                    | Link                                                                         |
-| --------------------------- | ---------------------------------------------------------------------------- |
-| 📦 GitHub Repository        | https://github.com/rouhalamin/checksum                                       |
-| 🚀 Latest Release           | https://github.com/rouhalamin/checksum/releases/tag/v1.1.0                   |
-| ⬇️ Download CheckSum v1.1.0 | https://github.com/rouhalamin/checksum/releases/download/v1.1.0/CheckSum.exe |
-| 🌐 Official Website         | https://checksumapp.netlify.app/                                             |
-| 🐛 Issues                   | https://github.com/rouhalamin/checksum/issues                                |
-| 📧 Security Contact         | mailto:rouhalaminerfani@gmail.com                                            |
-
----
-
-# 🔎 Verification Reference
-
-For **CheckSum v1.1.0**:
-
-```text
-File:
-CheckSum.exe
-
-SHA-256:
-bb42d17310d5e1662b2235821a5f248a77c2bcc48566dbef441e8b5feb3d24bf
-```
-
-Windows command:
-
-```cmd
-certutil -hashfile CheckSum.exe SHA256
-```
-
----
-
-<div align="center">
-
-## 🔐 Verify Before You Trust.
-
-### Built with Rust. Designed for integrity. Open source by choice.
-
-<br>
-
-**CheckSum — Protecting trust, one file at a time.**
-
-<br>
-
-⭐ If CheckSum is useful to you, consider giving the repository a star.
-
-<br>
-
-© Rohulamin Erfani — CheckSum
-Licensed under GPL-3.0
+<sub>CheckSum · Licensed under GPL-3.0 · Built with Rust</sub>
 
 </div>
