@@ -4,7 +4,7 @@
 
 ### Native SHA-256 file integrity verification for Windows, built in Rust.
 
-<a href="https://github.com/rouhalamin/checksum/releases/tag/v1.1.0"><img src="https://img.shields.io/github/v/release/rouhalamin/checksum?style=flat-square&label=release&color=2b6cb0" alt="Latest release"></a>
+<a href="https://github.com/rouhalamin/checksum/releases/tag/v1.2.0"><img src="https://img.shields.io/github/v/release/rouhalamin/checksum?style=flat-square&label=release&color=2b6cb0" alt="Latest release"></a>
 <a href="https://github.com/rouhalamin/checksum/blob/main/LICENSE"><img src="https://img.shields.io/github/license/rouhalamin/checksum?style=flat-square&color=6c5ce7" alt="License"></a>
 <img src="https://img.shields.io/badge/language-Rust-b7410e?style=flat-square&logo=rust&logoColor=white" alt="Written in Rust">
 <img src="https://img.shields.io/badge/platform-Windows%2010%20%7C%2011-0078d4?style=flat-square&logo=windows&logoColor=white" alt="Supported platforms">
@@ -12,8 +12,8 @@
 
 <p></p>
 
-**[Download for Windows](https://github.com/rouhalamin/checksum/releases/download/v1.1.0/CheckSum.exe)** &nbsp;·&nbsp;
-[Release Notes](https://github.com/rouhalamin/checksum/releases/tag/v1.1.0) &nbsp;·&nbsp;
+**[Download for Windows](https://github.com/rouhalamin/checksum/releases/download/v1.2.0/CheckSum.exe)** &nbsp;·&nbsp;
+[Release Notes](https://github.com/rouhalamin/checksum/releases/tag/v1.2.0) &nbsp;·&nbsp;
 [Website](https://checksumapp.netlify.app/) &nbsp;·&nbsp;
 [Report an Issue](https://github.com/rouhalamin/checksum/issues)
 
@@ -62,10 +62,10 @@ If the hashes match, your file is identical to that reference. If they don't, it
 
 | | |
 |---|---|
-| **Latest version** | `v1.1.0` |
+| **Latest version** | `v1.2.0` |
 | **Executable** | `CheckSum.exe` |
-| **Direct download** | **[CheckSum.exe (v1.1.0)](https://github.com/rouhalamin/checksum/releases/download/v1.1.0/CheckSum.exe)** |
-| **All releases** | [github.com/rouhalamin/checksum/releases](https://github.com/rouhalamin/checksum/releases/tag/v1.1.0) |
+| **Direct download** | **[CheckSum.exe (v1.2.0)](https://github.com/rouhalamin/checksum/releases/download/v1.2.0/CheckSum.exe)** |
+| **All releases** | [github.com/rouhalamin/checksum/releases](https://github.com/rouhalamin/checksum/releases/tag/v1.2.0) |
 | **Source code** | [github.com/rouhalamin/checksum](https://github.com/rouhalamin/checksum) |
 | **Website** | [checksumapp.netlify.app](https://checksumapp.netlify.app/) |
 
@@ -75,7 +75,7 @@ If the hashes match, your file is identical to that reference. If they don't, it
 
 Every release ships with a published SHA-256 reference hash. **This is a project-provided value, not an independently audited one** — you're encouraged to verify it yourself using tools you already trust.
 
-**CheckSum.exe v1.1.0 — SHA-256:**
+**CheckSum.exe v1.2.0 — SHA-256:**
 
 ```
 bb42d17310d5e1662b2235821a5f248a77c2bcc48566dbef441e8b5feb3d24bf
@@ -92,7 +92,7 @@ certutil -hashfile CheckSum.exe SHA256
 Compare the output line-by-line against the reference hash above.
 
 - ✅ **Matches** — the file you downloaded is identical to the published release.
-- ❌ **Does not match** — the file differs from the published release. Do not run it. Re-download from the [official release page](https://github.com/rouhalamin/checksum/releases/tag/v1.1.0) and verify again.
+- ❌ **Does not match** — the file differs from the published release. Do not run it. Re-download from the [official release page](https://github.com/rouhalamin/checksum/releases/tag/v1.2.0) and verify again.
 
 <br>
 
@@ -102,7 +102,7 @@ CheckSum is developed and distributed independently and does not currently use a
 
 **Verification-first workflow:**
 
-1. Download `CheckSum.exe` only from the [official GitHub Release](https://github.com/rouhalamin/checksum/releases/download/v1.1.0/CheckSum.exe).
+1. Download `CheckSum.exe` only from the [official GitHub Release](https://github.com/rouhalamin/checksum/releases/download/v1.2.0/CheckSum.exe).
 2. Compute its SHA-256 with `certutil` (see above).
 3. Compare the result against the [published reference hash](#file-integrity-verification).
 4. Only after independently confirming the file matches, if Windows still shows a warning, you may choose to continue via its **More info → Run anyway** path.
