@@ -1,4 +1,4 @@
-Version: 1.2.0
+Version: 1.3.0
 Size: 988 KB
 Download: https://github.com/rouhalamin/checksum/releases/download/v1.2.0/CheckSum.exe
 SHA256: A5D74D5A777740934337469D44B8BF4AD43C63F5233D13F2B6C53A8BF211EF6F
@@ -9,3 +9,4 @@ Changes:
 - Rich UI Telemetry Added File Size Elapsed Time and real-time MB per second Speed metrics
 - Native Windows Integration Implemented direct drag and drop file handling
 - Hyperlink Callbacks Added clickable shortcuts for GitHub Website and Crypto Support
+- Testing Win32 native downloader engine
