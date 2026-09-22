@@ -1,0 +1,45 @@
+
+[package]
+name = "checksum"
+version = "1.2.0"
+edition = "2021"
+authors = ["Rohulamin Erfani"]
+build = "build.rs"
+
+[[bin]]
+name = "CheckSum"
+path = "src/main.rs"
+
+[dependencies]
+native-windows-gui = { version = "1.0.13", default-features = false, features = [
+    "cursor", "file-dialog", "message-window", "progress-bar",
+    "textbox", "frame", "high-dpi", "combobox"
+] }
+native-windows-derive = "1.0.5"
+digest = "0.10"
+sha2 = "0.10"
+sha1 = "0.10"
+md-5 = "0.10"
+blake2 = "0.10"
+blake3 = "1.5"
+hex = "0.4"
+winapi = { version = "0.3", features = [
+    "winuser", "wingdi", "windef", "minwindef", "libloaderapi",
+    "basetsd", "uxtheme", "shellapi", "winbase", "guiddef", "ntdef", "winnt",
+    "wininet"
+] }
+
+[build-dependencies]
+embed-resource = "2"
+
+# --- hardened, symbol-stripped release profile -----------------------------
+# opt-level is 3 on purpose: hashing throughput on multi-GB files matters
+# far more than binary size here. LTO + codegen-units=1 + strip still make
+# manual reverse engineering meaningfully harder without hurting speed, with
+# no anti-analysis, anti-debugger, or evasion behavior of any kind.
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

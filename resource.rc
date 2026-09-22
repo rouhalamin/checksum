@@ -1,0 +1,3 @@
+// Fixed resource id 1 so main.rs can LoadIconW(..., MAKEINTRESOURCEW(1))
+// at runtime and force the title-bar/taskbar icon explicitly.
+1 ICON "app_icon.ico"
