@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    background-color: #e5e7eb;
+    color: #1f2937;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace;
+  }
+}
+
+/* Custom Win32 classic UI styling details */
+.win32-dialog-shadow {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+}
+
+.win32-bevel {
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #71717a;
+  border-bottom: 1px solid #71717a;
+}
+
+.win32-bevel-inset {
+  border-top: 1px solid #71717a;
+  border-left: 1px solid #71717a;
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+}

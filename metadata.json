@@ -1,0 +1,8 @@
+{
+  "name": "CheckSum",
+  "description": "Native multi-algorithm file integrity verifier and checksum calculator with SHA-256, SHA-384, SHA-512, SHA-1, MD5, BLAKE2b, and BLAKE3 support.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
