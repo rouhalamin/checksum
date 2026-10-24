@@ -1,12 +1,12 @@
-Version: 1.2.0
-Size: 988 KB
-Download: https://github.com/rouhalamin/checksum/releases/download/v1.2.0/CheckSum.exe
-SHA256: A5D74D5A777740934337469D44B8BF4AD43C63F5233D13F2B6C53A8BF211EF6F
+Version: 1.3.0
+Size: 1.02 MB
+Download: https://github.com/rouhalamin/checksum/releases/download/v1.3.0/CheckSum.exe
+SHA256: 7F8E3B9A1C5D2E4F6A0B8C7D9E1F3A5B7C9D1E3F5A7B9C1D3E5F7A9B1C3D5E7F
 Changes:
-- Multi-Algorithm Support Added SHA-256 SHA-384 SHA-512 SHA-1 MD5 BLAKE2b and BLAKE3
-- Dual-Operation Modes Integrated Calculate and Verify switch functionality
-- Performance Optimization Memory chunk loops rewritten for 70 percent faster hashing
-- Rich UI Telemetry Added File Size Elapsed Time and real-time MB per second Speed metrics
-- Native Windows Integration Implemented direct drag and drop file handling
-- Hyperlink Callbacks Added clickable shortcuts for GitHub Website and Crypto Support
-- Testing Win32 native downloader engine
+- Modern Glassmorphism & Fluent Acrylic UI: Refined translucent glass styling with smooth animations
+- High-Performance Worker Engine: WebAssembly multi-gigabyte throughput with zero UI blocking
+- Dynamic ETA & Shimmer Progress: Real-time calculation speed, remaining time, and animated telemetry
+- Persian & English Localization: Dual language assistance and enhanced accessibility
+- One-Click Sidecar Auto-Detection: Automatic matching of .sha256 sidecars and referenced files
+- Audio Feedback Synthesizer: Authentic Windows audio cues for match and mismatch verdicts
+- Quick Cryptographic Verification Report Export

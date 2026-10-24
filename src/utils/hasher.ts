@@ -10,7 +10,9 @@ import {
 } from 'hash-wasm';
 import { AlgorithmType, HashTelemetry } from '../types';
 
-const CHUNK_SIZE = 4 * 1024 * 1024; // 4 MiB chunk loop, exactly matching CheckSum's optimal chunking
+// High-throughput 8 MiB chunks: maximizes CPU cache & hardware disk I/O throughput
+const LARGE_CHUNK_SIZE = 8 * 1024 * 1024;
+const SMALL_CHUNK_SIZE = 4 * 1024 * 1024;
 
 export async function createHasherInstance(algo: AlgorithmType): Promise<IHasher> {
   switch (algo) {
@@ -48,52 +50,58 @@ export async function computeFileHash(
   const hasher = await createHasherInstance(algorithm);
   hasher.init();
 
+  // Dynamic chunk size: 8MiB for large files to saturate NVMe / SSD throughput
+  const chunkSize = totalBytes > 32 * 1024 * 1024 ? LARGE_CHUNK_SIZE : SMALL_CHUNK_SIZE;
+
   let offset = 0;
   const startTime = performance.now();
   let lastPollTime = startTime;
   let lastPollBytes = 0;
+  let chunkCount = 0;
 
   while (offset < totalBytes) {
     if (abortSignal?.aborted) {
       throw new DOMException('Hashing aborted by user', 'AbortError');
     }
 
-    const chunkEnd = Math.min(offset + CHUNK_SIZE, totalBytes);
+    const chunkEnd = Math.min(offset + chunkSize, totalBytes);
     const slice = file.slice(offset, chunkEnd);
     const arrayBuffer = await slice.arrayBuffer();
     const uint8View = new Uint8Array(arrayBuffer);
 
     hasher.update(uint8View);
     offset = chunkEnd;
+    chunkCount++;
 
     const now = performance.now();
     const dt = (now - lastPollTime) / 1000;
     let instantSpeed = 0;
 
-    if (dt >= 0.08 || offset === totalBytes) {
+    // Report telemetry smoothly at ~60Hz without throttling the compute loop
+    if (dt >= 0.05 || offset === totalBytes) {
       const bytesInInterval = offset - lastPollBytes;
       instantSpeed = dt > 0 ? bytesInInterval / dt : 0;
       lastPollTime = now;
       lastPollBytes = offset;
+
+      const totalElapsedSecs = Math.max((now - startTime) / 1000, 0.001);
+      const averageSpeed = offset / totalElapsedSecs;
+      const percentage = totalBytes > 0 ? Math.min((offset / totalBytes) * 100, 100) : 100;
+
+      if (onProgress) {
+        onProgress({
+          fileSize: totalBytes,
+          checkedBytes: offset,
+          elapsedMs: Math.round(now - startTime),
+          instantSpeedBps: instantSpeed,
+          averageSpeedBps: averageSpeed,
+          percentage,
+        });
+      }
     }
 
-    const totalElapsedSecs = Math.max((now - startTime) / 1000, 0.001);
-    const averageSpeed = offset / totalElapsedSecs;
-    const percentage = totalBytes > 0 ? Math.min((offset / totalBytes) * 100, 100) : 100;
-
-    if (onProgress) {
-      onProgress({
-        fileSize: totalBytes,
-        checkedBytes: offset,
-        elapsedMs: Math.round(now - startTime),
-        instantSpeedBps: instantSpeed,
-        averageSpeedBps: averageSpeed,
-        percentage,
-      });
-    }
-
-    // Yield back to main thread for smooth 60fps UI
-    if (offset < totalBytes) {
+    // High performance micro-yield: only yield event loop every 2 chunks for maximum throughput
+    if (chunkCount % 2 === 0 && offset < totalBytes) {
       await new Promise((resolve) => setTimeout(resolve, 0));
     }
   }
@@ -110,7 +118,11 @@ export async function computeFileHash(
   };
 }
 
-export function validateExpectedHash(raw: string, algo: AlgorithmType, expectedLen: number): { valid: boolean; error?: string } {
+export function validateExpectedHash(
+  raw: string,
+  algo: AlgorithmType,
+  expectedLen: number
+): { valid: boolean; error?: string } {
   const trimmed = raw.trim().toLowerCase();
   if (!trimmed) {
     return { valid: false, error: 'Please enter the expected checksum.' };

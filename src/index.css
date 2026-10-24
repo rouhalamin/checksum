@@ -3,8 +3,8 @@
 @layer base {
   body {
     font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
-    background-color: #e5e7eb;
-    color: #1f2937;
+    color: #1e293b;
+    overflow-x: hidden;
   }
 
   code, pre, .font-mono {
@@ -12,21 +12,89 @@
   }
 }
 
-/* Custom Win32 classic UI styling details */
-.win32-dialog-shadow {
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+/* Glassmorphism Styles */
+.glass-window {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 
+    0 25px 50px -12px rgba(15, 23, 42, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.4) inset,
+    0 10px 30px rgba(30, 58, 138, 0.1);
 }
 
-.win32-bevel {
-  border-top: 1px solid #ffffff;
-  border-left: 1px solid #ffffff;
-  border-right: 1px solid #71717a;
-  border-bottom: 1px solid #71717a;
+.glass-card {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 15px -2px rgba(15, 23, 42, 0.05), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
 }
 
-.win32-bevel-inset {
-  border-top: 1px solid #71717a;
-  border-left: 1px solid #71717a;
-  border-right: 1px solid #ffffff;
-  border-bottom: 1px solid #ffffff;
+.glass-input {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(203, 213, 225, 0.8);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) inset;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Smooth Shimmer Bar Animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-active {
+  background: linear-gradient(
+    90deg,
+    #10b981 0%,
+    #34d399 25%,
+    #6ee7b7 50%,
+    #34d399 75%,
+    #10b981 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s infinite linear;
+}
+
+.shimmer-cancelling {
+  background: linear-gradient(
+    90deg,
+    #dc2626 0%,
+    #f87171 50%,
+    #dc2626 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite linear;
+}
+
+/* Ambient Background Orbs */
+@keyframes floatOrb1 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  50% { transform: translate(30px, -25px) scale(1.08); }
+}
+
+@keyframes floatOrb2 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  50% { transform: translate(-35px, 20px) scale(1.05); }
+}
+
+.ambient-orb-1 {
+  animation: floatOrb1 14s ease-in-out infinite;
+}
+
+.ambient-orb-2 {
+  animation: floatOrb2 18s ease-in-out infinite;
 }
