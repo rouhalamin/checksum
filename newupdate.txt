@@ -1,7 +1,7 @@
 Version: 1.3.0
 Size: 1.02 MB
 Download: https://github.com/rouhalamin/checksum/releases/download/v1.3.0/CheckSum.exe
-SHA256: 7F8E3B9A1C5D2E4F6A0B8C7D9E1F3A5B7C9D1E3F5A7B9C1D3E5F7A9B1C3D5E7F
+SHA256: c3c6f18c6844baa843e006f8bd891dc1bfa8544173030c3f520d6161ffd9a7c3
 Changes:
 - Modern Glassmorphism & Fluent Acrylic UI: Refined translucent glass styling with smooth animations
 - High-Performance Worker Engine: WebAssembly multi-gigabyte throughput with zero UI blocking
